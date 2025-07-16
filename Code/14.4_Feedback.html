@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Intermadiate HTML Project</title>
+    <style>
+    .feedback-container {
+      padding-left: 5%;
+      font-family: Arial, sans-serif;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: left;
+      flex-direction: row-reverse;
+      font-size: 2.5rem;
+      cursor: pointer;
+    }
+
+    .star {
+      color: #ccc;
+      transition: color 0.2s;
+    }
+
+    .star.selected,
+    .star:hover,
+    .star:hover ~ .star {
+      color: gold;
+    }
+
+    #rating-value {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+    <table border="1" width="100%">
+        <!-- HEADER -->
+        <th colspan="2"><h1>.Coffee</h1></th>
+        <tr>
+            <!-- MAIN MENU -->
+            <td width="20%" style="vertical-align: top; text-align: left; padding: 10px;">
+                <div>
+                    <a href="14.1_.coffee.html" style="text-decoration: none; color: black;">
+                        Home
+                    </a>
+                    <a href="14.2_menuCoffee.html" style="text-decoration: none; color: black;">
+                        <br>Menu
+                    </a>
+                    <a href="14.3_AboutUsCoffee.html" style="text-decoration: none; color: black;">
+                        <br>About Us
+                    </a>
+                    <a href="14.4_Feedback.html" style="text-decoration: none; color: black;">
+                        <br>Feedback
+                    </a>
+                </div>
+            </td>
+            <!-- LANDING PAGE -->
+            <td>
+                <div class="feedback-container">
+                    <h3>Rate Us!</h3>
+                    <div class="stars" id="star-container">
+                        <span class="star" data-value="5">&#9733;</span>
+                        <span class="star" data-value="4">&#9733;</span>
+                        <span class="star" data-value="3">&#9733;</span>
+                        <span class="star" data-value="2">&#9733;</span>
+                        <span class="star" data-value="1">&#9733;</span>
+                    </div>
+                    <div id="rating-value">Your rating: 0 out of 5</div>
+                    <br><br>
+                    <h3>Tell us about your experience!</h3>
+                    <form action="" method="GET">
+                        <textarea cols="50" rows="5" name="feedback" id="cus_feedback" placeholder="Your thought is our chance to grow!"></textarea>
+                    </form>
+                    <br><br><br>
+                </div>
+                <script>
+              const stars = document.querySelectorAll('.star');
+              const ratingValue = document.getElementById('rating-value');
+              let currentRating = 0;
+            
+              stars.forEach(star => {
+                star.addEventListener('click', () => {
+                  currentRating = star.getAttribute('data-value');
+                  updateStars(currentRating);
+                });
+            
+                star.addEventListener('mouseover', () => {
+                  updateStars(star.getAttribute('data-value'));
+                });
+            
+                star.addEventListener('mouseout', () => {
+                  updateStars(currentRating);
+                });
+              });
+          
+              function updateStars(rating) {
+                stars.forEach(star => {
+                  if (star.getAttribute('data-value') <= rating) {
+                    star.classList.add('selected');
+                  } else {
+                    star.classList.remove('selected');
+                  }
+                });
+                ratingValue.textContent = `Your rating: ${rating} out of 5`;
+              }
+            </script>
+            </td>
+        </tr>
+            <!-- COPYRIGHT -->
+        <th colspan="2">
+            <p>
+                Copyright<sup>&copy;</sup> 2025 Michael Mathew. All Rights Reserved.
+            </p>
+        </th>
+    </table>
+</body>
+</html>
